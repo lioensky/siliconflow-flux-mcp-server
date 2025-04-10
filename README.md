@@ -24,7 +24,7 @@ node --version  # 应显示v18.0.0或更高版本
 1. 克隆仓库：
 
 ```bash
-git clone https://github.com/XXpE3/omgflux-mcp-server.git && cd omgflux-mcp-server
+git clone [https://github.com/lioensky/siliconflow-flux-mcp-server].git && cd omgflux-mcp-server
 ```
 
 2. 安装依赖：
