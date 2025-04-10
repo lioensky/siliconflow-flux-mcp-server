@@ -46,7 +46,8 @@ npm run build
 在使用前，您需要：
 
 1. 在项目根目录创建或编辑`.env`文件
-2. 添加您的SiliconFlow API密钥：
+2. 通过https://cloud.siliconflow.cn/i/c03IoxqR获取14元额度密钥
+3. 添加您的SiliconFlow API密钥：
 
 ```
 SILICONFLOW_API_KEY=您的API密钥
