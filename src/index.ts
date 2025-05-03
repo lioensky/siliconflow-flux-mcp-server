@@ -116,7 +116,7 @@ class SiliconFlowFluxMcpServer { // Renamed class for clarity
                 {
                     // Tool Definition for SiliconFlow Flux
                     name: "generate_image", // Keep the name simple for the AI
-                    description: `Generates an image using the SiliconFlow API with the Flux Schnell model (black-forest-labs/FLUX.1-schnell). Provide a detailed English prompt and select a resolution. Nya~ <3`,
+                    description: `Generates an image using the SiliconFlow API with the Flux Schnell model (black-forest-labs/FLUX.1-schnell). Provide a detailed English prompt and select a resolution. Nya~ <3\n重要提示：\n1. 此工具返回一个基础的 HTML \`<img>\` 标签（包含 src 和 alt）。\n2. 请在收到此标签后，为其添加一个 \`width\` 属性，值应在 200 到 500 像素之间（例如 \`width="300"\`）。\n3. 在最终回复用户时，请直接发送这个*完整的*、已添加 \`width\` 属性的 HTML \`<img>\` 标签，以便用户可以直接看到图片。`,
                     inputSchema: {
                         type: "object",
                         properties: {
@@ -213,13 +213,14 @@ class SiliconFlowFluxMcpServer { // Renamed class for clarity
             // Return the image as a Markdown link
             const usedSeedText = usedSeed ? ` (Seed: ${usedSeed})` : ''; // 可选：把种子也加上
             const altText = params.prompt.substring(0, 50) + (params.prompt.length > 50 ? '...' : ''); // 用部分提示做 Alt Text
-            const markdownImage: TextContent = {
+            // Revert: Return only the basic img tag. AI will add width based on description.
+            const htmlImage: TextContent = {
                 type: "text",
-                // !!! 修正这里 !!!
-                text: `![${altText}](${imageUrl})${usedSeedText}` // <--- 把 imageUrl 和一些描述放进去！
+                // Format as basic HTML img tag
+                text: `<img src="${imageUrl}" alt="${altText}">${usedSeedText}`
             };
             return {
-                content: [markdownImage] // Return the Markdown image directly
+                content: [htmlImage] // Return the HTML image directly
             };
             // --- End Formatting Output ---
         } catch (error) {

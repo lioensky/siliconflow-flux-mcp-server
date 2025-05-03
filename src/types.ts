@@ -6,6 +6,7 @@
 export interface ImageGenerationArgs {
     /**
      * Text prompt for image generation. Please provide prompts in English for best results.
+	 * 一次生成1张图片，收到返回的URL后请勿反复调用工具避免浪费API额度。
      * @example "A cute catgirl maid serving tea to her master, anime style, high quality"
      */
     prompt: string;
